@@ -11,8 +11,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BTSCataloAPI.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20250310120337_InitialCreate")]
-    partial class InitialCreate
+    [Migration("20250311135449_Inicial")]
+    partial class Inicial
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
