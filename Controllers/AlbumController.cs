@@ -25,6 +25,12 @@ public class AlbumController : ControllerBase
     [HttpPost]
     public ActionResult<Album> AddAlbum([FromBody] Album novoAlbum)
     {
+
+         if (novoAlbum == null)
+            {
+             return BadRequest("O objeto Album é obrigatório.");
+            }
+
         _context.Albuns.Add(novoAlbum);
         _context.SaveChanges();
         return CreatedAtAction(nameof(GetAlbuns), new { id = novoAlbum.Id }, novoAlbum);
