@@ -9,6 +9,7 @@ namespace BTSCataloAPI.Models
     [JsonConverter(typeof(TimeSpanConverter))] 
     public TimeSpan Duracao { get; set; }
     public string Album {get; set;} = string.Empty;
-    //public Album Album {get; set; } 
+    public string Titulo { get; set; } = string.Empty;
+    public string Artista { get; set; } = string.Empty;
     }
 }
