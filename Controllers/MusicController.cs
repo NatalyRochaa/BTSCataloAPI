@@ -1,26 +1,40 @@
 using Microsoft.AspNetCore.Mvc;
 using BTSCataloAPI.Models;
 using System.Collections.Generic;
+using BTSCataloAPI.Data;
 
 [Route("api/[controller]")]
 [ApiController]
 public class MusicController : ControllerBase
 {
     
-    private static List<Music> musicas = new List<Music>();
+    private readonly AppDbContext _context;
 
-    
-    [HttpGet]
-    public ActionResult<IEnumerable<Music>> GetMusics()
+    public MusicController(AppDbContext context)
     {
-        return Ok(musicas);
+        _context = context;
     }
+
+    [HttpGet]
+    public IActionResult GetMusics()
+    {
+        var musics = _context.Musics.ToList();
+        return Ok(musics);
+    }
+
 
     
     [HttpPost]
     public ActionResult<Music> AddMusic([FromBody] Music novaMusic)
     {
-        musicas.Add(novaMusic);
-        return CreatedAtAction(nameof(GetMusics), new { id = novaMusic.Id }, novaMusic);
-    }
+        if (novaMusic == null || string.IsNullOrWhiteSpace(novaMusic.Titulo))
+            {
+                return BadRequest("Música inválida.");
+            }
+
+    _context.Musics.Add(novaMusic);
+    _context.SaveChanges();
+    return CreatedAtAction(nameof(GetMusics), new { id = novaMusic.Id }, novaMusic);
+}
+
 }
