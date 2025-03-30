@@ -8,5 +8,6 @@ namespace BTSCataloAPI.Data
         public AppDbContext(DbContextOptions<AppDbContext> options) : base(options) {}
 
         public DbSet<Album> Albuns { get; set; }
+        public DbSet<Music> Musics { get; set; } 
     }
 }
