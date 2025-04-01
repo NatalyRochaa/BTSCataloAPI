@@ -27,7 +27,7 @@ public class MusicController : ControllerBase
     [HttpPost]
     public ActionResult<Music> AddMusic([FromBody] Music novaMusic)
     {
-        if (novaMusic == null || string.IsNullOrWhiteSpace(novaMusic.Titulo))
+        if (novaMusic == null )
             {
                 return BadRequest("Música inválida.");
             }
