@@ -9,5 +9,13 @@ namespace BTSCataloAPI.Data
 
         public DbSet<Album> Albuns { get; set; }
         public DbSet<Music> Musics { get; set; } 
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<Album>()
+                .HasMany(a => a.Tracks)
+                .WithOne(m => m.Album)
+                .HasForeignKey(m => m.AlbumId);
+        }
     }
 }
