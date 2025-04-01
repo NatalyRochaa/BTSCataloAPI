@@ -45,25 +45,13 @@ namespace BTSCataloAPI.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
-                    b.Property<string>("Album")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
-
-                    b.Property<int?>("AlbumId")
+                    b.Property<int>("AlbumId")
                         .HasColumnType("INTEGER");
-
-                    b.Property<string>("Artista")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
 
                     b.Property<TimeSpan>("Duracao")
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Nome")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("Titulo")
                         .IsRequired()
                         .HasColumnType("TEXT");
 
@@ -76,9 +64,13 @@ namespace BTSCataloAPI.Migrations
 
             modelBuilder.Entity("BTSCataloAPI.Models.Music", b =>
                 {
-                    b.HasOne("BTSCataloAPI.Models.Album", null)
+                    b.HasOne("BTSCataloAPI.Models.Album", "Album")
                         .WithMany("Tracks")
-                        .HasForeignKey("AlbumId");
+                        .HasForeignKey("AlbumId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Album");
                 });
 
             modelBuilder.Entity("BTSCataloAPI.Models.Album", b =>
