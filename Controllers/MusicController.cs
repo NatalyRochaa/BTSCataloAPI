@@ -1,13 +1,24 @@
 using Microsoft.AspNetCore.Mvc;
+using System.Threading.Tasks;
+using YourNamespace.Services;
 
-[Route("api/[controller]")]
 [ApiController]
+[Route("api/[controller]")]
 public class MusicController : ControllerBase
 {
-    [HttpGet]
-    public IActionResult GetMusics()
+    private readonly SpotifyService _spotifyService;
+
+    public MusicController()
     {
-    
-        return Ok("Em breve: músicas vindas do Spotify!");
+        _spotifyService = new SpotifyService();
+    }
+
+    [HttpGet("{id}")]
+    public async Task<IActionResult> GetMusicById(string id)
+    {
+        var music = await _spotifyService.GetTrackDetails(id);
+        if (music == null)
+            return NotFound("Música não encontrada.");
+        return Ok(music);
     }
 }
