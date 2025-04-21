@@ -1,17 +1,19 @@
-using System.Text.Json.Serialization;
+using System;
 
-namespace BTSCataloAPI.Models
+public class Music
 {
-    public class Music
+    public Guid Id { get; set; }
+    public string Name { get; set; }
+    public string ExternalUrl { get; set; }
+    public int DurationMs { get; set; }  
+    public byte[] Image { get; set; }  
+
+    public Music(Guid id, string name, string externalUrl, int durationMs, byte[] image)
     {
-    public int Id { get; set; }
-    public string Nome { get; set; } = string.Empty;
-    [JsonConverter(typeof(TimeSpanConverter))] 
-    public TimeSpan Duracao { get; set; }
-
-
-    public int AlbumId { get; set; } 
-    public Album? Album { get; set; } 
-
+        Id = id;
+        Name = name;
+        ExternalUrl = externalUrl;
+        DurationMs = durationMs;
+        Image = image;
     }
 }

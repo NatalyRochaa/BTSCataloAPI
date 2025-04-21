@@ -1,13 +1,30 @@
-namespace BTSCataloAPI.Models // pesquisei oq era esse namespace, e ele basicamente serve 
-// como um agrupador de classes, interfaces e outros componentes. Ele organiza quando tem
-// diferentes classas com o mesmo nome em um projeto
+using System;
+using System.Collections.Generic;
+
+public enum AlbumType
 {
-    public class Album
+    Studio,
+    Live,
+    Compilation,
+    EP
+}
+
+public class Album
+{
+    public Guid Id { get; set; }
+    public string Name { get; set; }
+    public DateTime ReleaseDate { get; set; }
+    public AlbumType Type { get; set; }
+    public List<string> Images { get; set; }  
+    public string ExternalUrl { get; set; }
+
+    public Album(Guid id, string name, DateTime releaseDate, AlbumType type, List<string> images, string externalUrl)
     {
-        public int Id { get; set; } 
-        public string Title { get; set; } = string.Empty;
-        public string Artist { get; set; } = "BTS";
-        public DateTime ReleaseDate { get; set; }
-        public List<Music> Tracks { get; set; } = new List<Music>();
+        Id = id;
+        Name = name;
+        ReleaseDate = releaseDate;
+        Type = type;
+        Images = images;
+        ExternalUrl = externalUrl;
     }
 }
