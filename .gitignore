@@ -2,7 +2,9 @@
 bin/
 obj/
 .vscode/
+appsettings.Development.json
 
+#não utilizo mais banco, mas vou deixar aqui por precaução
 *.db
 *.db-shm
 *.db-wal
