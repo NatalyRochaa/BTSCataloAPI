@@ -22,7 +22,7 @@ namespace BTSCataloAPI.Controllers
         public async Task<IActionResult> GetBTSAlbums()
         {
             
-            var searchResponse = await _httpClient.GetAsync("https://api.spotify.com/v1/albums/43wFM1HquliY3iwKWzPN4y");
+            var searchResponse = await _httpClient.GetAsync("https://api.spotify.com/v1/albums/...");
             if (!searchResponse.IsSuccessStatusCode) return StatusCode((int)searchResponse.StatusCode);
 
             var searchContent = await searchResponse.Content.ReadAsStringAsync();
@@ -36,7 +36,7 @@ namespace BTSCataloAPI.Controllers
             if (string.IsNullOrEmpty(btsId)) return NotFound("Artista BTS não encontrado.");
 
            
-            var albumsResponse = await _httpClient.GetAsync($"https://api.spotify.com/v1/tracks/5YMXGBD6vcYP7IolemyLtK");
+            var albumsResponse = await _httpClient.GetAsync($"https://api.spotify.com/v1/tracks/...");
             if (!albumsResponse.IsSuccessStatusCode) return StatusCode((int)albumsResponse.StatusCode);
 
             var albumsContent = await albumsResponse.Content.ReadAsStringAsync();
