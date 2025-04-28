@@ -16,7 +16,7 @@ namespace YourNamespace.Services
             {
                 client.DefaultRequestHeaders.Add("Authorization", "Bearer " + accessToken);
 
-                var response = await client.GetStringAsync($"https://api.spotify.com/v1/albums/43wFM1HquliY3iwKWzPN4y");
+                var response = await client.GetStringAsync($"https://api.spotify.com/v1/albums/...");
                 var album = JsonConvert.DeserializeObject<Album>(response);
 
                 return album;
@@ -34,7 +34,7 @@ namespace YourNamespace.Services
             {
                 client.DefaultRequestHeaders.Add("Authorization", "Bearer " + accessToken);
 
-                var response = await client.GetStringAsync($"https://api.spotify.com/v1/tracks/5YMXGBD6vcYP7IolemyLtK");
+                var response = await client.GetStringAsync($"https://api.spotify.com/v1/tracks/...");
                 var track = JsonConvert.DeserializeObject<Music>(response);
 
                 return track;
